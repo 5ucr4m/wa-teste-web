@@ -2,6 +2,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import Drawer from 'components/Layout/Drawer';
 import AccountMultipleIcon from 'mdi-react/AccountMultipleIcon';
 import StarIcon from 'mdi-react/StarIcon';
+import ReorderHorizontalIcon from 'mdi-react/ReorderHorizontalIcon';
 import ViewDashboardIcon from 'mdi-react/ViewDashboardIcon';
 import React, { memo, useCallback, useRef, useState } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
@@ -9,6 +10,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import DashboardIndexPage from './Dashboard';
 import SamplePage from './Sample';
 import UserIndexPage from './Users';
+import OrderPage from './Order';
 
 export const ScrollTopContext = React.createContext<Function>(() => {});
 
@@ -43,6 +45,12 @@ const AdminPage = memo((props: {}) => {
       // role: enRoles.admin,
       icon: AccountMultipleIcon
     },
+    {
+      path: '/pedidos',
+      display: 'Pedidos',
+      // role: enRoles.admin,
+      icon: ReorderHorizontalIcon
+    },
     { path: '/exemplos', display: 'Exemplos', icon: StarIcon }
   ]);
 
@@ -57,6 +65,7 @@ const AdminPage = memo((props: {}) => {
             <Switch>
               <Route path='/exemplos' component={SamplePage} />
               <Route path='/usuarios' component={UserIndexPage} />
+              <Route path='/pedidos' component={OrderPage} />
               <Route path='/' component={DashboardIndexPage} />
               <Route render={renderRedirect} />
             </Switch>
